@@ -27,9 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// mongoose.connect("mongodb://prasanthav14:thegreenmile@03@cluster0.dgpy4.mongodb.net/userDB", {useNewUrlParser: true});
 mongoose.connect(process.env.MONGO_URL);
-// mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
   email: String,

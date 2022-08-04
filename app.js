@@ -27,8 +27,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
-mongoose.set("useCreateIndex", true);
+// mongoose.connect("mongodb://prasanthav14:thegreenmile@03@cluster0.dgpy4.mongodb.net/userDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://prasanthav14:thegreenmile03@secretscluster.dgpy4.mongodb.net/userDB");
+// mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
   email: String,
@@ -61,7 +62,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    // console.log(profile);
 
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return cb(err, user);
@@ -170,11 +171,6 @@ app.post("/login", function(req, res){
   });
 
 });
-
-
-
-
-
 
 
 app.listen(3000, function() {
